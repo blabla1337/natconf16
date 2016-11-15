@@ -1,58 +1,42 @@
-This library contains a number of proof of concepts for rexx.
+ .d8888b.                    888                                                 
+d88P  Y88b                   888                                                 
+888    888                   888                                                 
+888        888  888 .d8888b  888888 .d88b.  88888b.d88b.                         
+888        888  888 88K      888   d88""88b 888 "888 "88b                        
+888    888 888  888 "Y8888b. 888   888  888 888  888  888                        
+Y88b  d88P Y88b 888      X88 Y88b. Y88..88P 888  888  888                        
+ "Y8888P"   "Y88888  88888P'  "Y888 "Y88P"  888  888  888                        
+                                                                                 
+                                                                                 
+                                                                                 
+888888b.            888            888                                           
+888  "88b           888            888                                           
+888  .88P           888            888                                           
+8888888K.   8888b.  888888 .d8888b 88888b.                                       
+888  "Y88b     "88b 888   d88P"    888 "88b                                      
+888    888 .d888888 888   888      888  888                                      
+888   d88P 888  888 Y88b. Y88b.    888  888                                      
+8888888P"  "Y888888  "Y888 "Y8888P 888  888                                      
+                                                                                 
+                                                                                 
+                                                                                 
+888b     d888                   d8b 888                    d8b                   
+8888b   d8888                   Y8P 888                    Y8P                   
+88888b.d88888                       888                                          
+888Y88888P888  .d88b.  88888b.  888 888888 .d88b.  888d888 888 88888b.   .d88b.  
+888 Y888P 888 d88""88b 888 "88b 888 888   d88""88b 888P"   888 888 "88b d88P"88b 
+888  Y8P  888 888  888 888  888 888 888   888  888 888     888 888  888 888  888 
+888   "   888 Y88..88P 888  888 888 Y88b. Y88..88P 888     888 888  888 Y88b 888 
+888       888  "Y88P"  888  888 888  "Y888 "Y88P"  888     888 888  888  "Y88888 
+                                                                             888 
+                                                                        Y8b d88P 
+                                                                         "Y88P"  
 
-It shows a way for rexx to respond to the operator stop command in
-POCREXXS.
 
-The POCREXXS contains optional 'debug' code (it will display the
-eyecatcher of some of the control blocks it traverses). This shows a
-method to optionally include (debug) code using the %INCLUDE compiler
-directive. This will of course only work if the code is compiled.
-To enable this the member POCDBGA should contain */ and the
-POCDBGB member should contain /*.
+Support repository for use with the GSE Natconf 2016 presentation.
+All required information in the zos-folder.
 
-The xxxxxA members should always be empty or contain */
-The xxxxxB members should always be empty or contain /*
+Contact Erik (mfsysprog) or Henri (wizardofzos) for information
 
-The principle is:
-/*                     << starts comment section
-/*%INCLUDE POCDBGA */  << include POCDBGA
-                       << if empty the comment continues
-*/                     OR if */ the comment ends and code becomes active
-some code              << some debug code
-IF 0 = 1 THEN          << 'some code' will replace the normal code
-/*%INCLUDE POCDBGB */  << include POCDBGB
-                       << should be empty if POCDBGA is empty
-/*                     OR should contain '/*' if POCDBGA has '*/'
-*/                     << ends comment section
-This way different types of debug code can be enabled or disabled
-easily by having 2 %INCLUDE members that surround the code. This is
-of course not limited to debug code, it could be used in any situation
-where we want to have an easy option to include or exclude parts of the
-(compiled) code.
-The same principle applies to the CPU measurement code (POCCPUA and
-POCCPUB).
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Make sure you keep the compile listing around, otherwise you probably
-will have a hard time figuring out what line the SIGL will point at
-if something goes wrong.
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-For the other code (the DB2 and Socket code) we use it the other way
-around. It is included by default, but surrounded by an %INCLUDE so that
-if we add */ to the POCDB2A or POCSOCA member and /* to the POCDB2B or
-POCSOCB member we can remove that code from the compiled rexx.
-
-The DB2 Purexml code uses the example EMP and EMPPROJACT tables. It
-shows a way to use a correlated subquery to generate an xml which shows
-all the employees from the EMP table and per employee all the projects
-from the EMPPROJACT table that they are working on.
-
-The socket code can be used to send the XML to a webserver. It is setup
-as a POST request against httpbin.org/post which will return the posted
-data embedded in a json format.
-Alternatively, you can send it to a netcat running somewhere:
-nc -l 7756
-where server would be the ip address of the server you are running the
-netcat on and port would be 7756 or whatever value you specify after
-the -l.
