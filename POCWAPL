@@ -1,0 +1,5 @@
+TWS is renamed to IWS (IBM Workload Scheduler) from version 9.3.
+At this point the SOE is renamed to WAPL, the workload automation
+programming language and will be part of the base product.
+The manuals can be found at:
+ftp://public.dhe.ibm.com/software/tivoli/workload_scheduler_zos/9.3/
