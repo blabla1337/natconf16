@@ -13,4 +13,5 @@ POCREXXC Compiled rexx (output from POCCMPL)
 POCREXXS Source code rexx showing some proof of concepts
 POCSOCA  Socket send code start member
 POCSOCB  Socket send code end member
-POCWAPL  Pointers to documentation on how to setup and use WAPL
+POCWAPL  Example rexx that uses WAPL
+POCWAPLJ JCL to execute POCWAPL
