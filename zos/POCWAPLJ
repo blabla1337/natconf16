@@ -1,0 +1,12 @@
+//*
+//*   SOE JCL to generate list of workstations
+//*   Example outout
+//*   CPWSCOM CPWSN=DUM  CPWSSC#=00004953 CPWSSS#=00000000 CPWSSR#=00000000 CPWSSW#=00 CPWSTWS=N CPWSLNK= 
+//RUNPIF   EXEC EQQYXJCL,TIME=1440,                         
+//         CMD=UNLINK,                                      
+//         SUBSYS=OP00                                      
+//EQQYXTOP.SYSPROC    DD                                    
+//                    DD                                    
+//                    DD                                    
+//                    DD DSN=YOUR.REXX.LIB,DISP=SHR         
+//*
